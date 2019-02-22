@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:OverlaySample.Controls"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             x:Class="OverlaySample.MapPage">
+    <ContentPage.Content>
+         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <maps:Map Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="MyMap" MapType="Street" />
+            <controls:OverlayView Grid.ColumnSpan="2" x:Name="overlayView"  OverlayOpacity="{Binding Path=Value, Source={x:Reference Name=slider3}}"  Scale="{Binding Path=Value, Source={x:Reference Name=slider2}}"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+         <Label Grid.Row="1"  Grid.Column="0" Text="Toggle Shape"/>
+        <Switch Grid.Row="1"  Grid.Column="1" Toggled="Handle_Toggled" />
+        <Label Grid.Row="2"  Grid.Column="0" Text="Scale"/>
+        <Slider Grid.Row="2"  Grid.Column="1" ThumbColor="Red" Value="1" MinimumTrackColor="Red" MaximumTrackColor="Fuchsia" VerticalOptions="EndAndExpand" x:Name="slider2" Minimum="0" Maximum="2" />
+        <Label Grid.Row="3"  Grid.Column="0" Text="Overlay Background"/>
+        <Slider  Grid.Row="3"  Grid.Column="1" ValueChanged="Handle_ValueChanged" ThumbColor="Red" MinimumTrackColor="Red" MaximumTrackColor="Fuchsia" VerticalOptions="EndAndExpand" x:Name="slider" Minimum="0" Maximum="360" />
+        <Label Grid.Row="4"  Grid.Column="0" Text="Overlay Opacity"/>
+        <Slider Grid.Row="4"  Grid.Column="1" ThumbColor="Red" Value="0.5" MinimumTrackColor="Red" MaximumTrackColor="Fuchsia" VerticalOptions="EndAndExpand" x:Name="slider3" Minimum="0" Maximum="1" />
+             
+         </Grid>
+    </ContentPage.Content>
+</ContentPage>
